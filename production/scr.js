@@ -1,3 +1,5 @@
+console.log('scr.js :: required');
+
 function SCR (config) {
 
     var _edge = require('edge')
@@ -8,105 +10,105 @@ function SCR (config) {
 
     var __constructor = function (config) {
 
-            console.log("scr.js :: __constructor")
+        console.log("scr.js :: __constructor")
 
-            _this.setConfig(config)
+        _this.setConfig(config)
 
-        }
+    }
 
-        _this.setConfig = function (config) {
+    _this.setConfig = function (config) {
 
-            console.log("scr.js :: setConfig")
+        console.log("scr.js :: setConfig")
 
-            _config = _this.buildConfig(config)
+        _config = _this.buildConfig(config)
 
-        }
+    }
 
-        _this.buildConfig = function (__config) {
+    _this.buildConfig = function (__config) {
 
-            console.log("scr.js :: buildConfig")
+        console.log("scr.js :: buildConfig")
 
-            var config = {}
+        var config = {}
 
-            config.name = __config.name
-            config.port = __config.port
-            config.library = {}
+        config.name = __config.name
+        config.port = __config.port
+        config.library = {}
 
-            __.each(__config.library.mapMethods, function (v, k) {
+        __.each(__config.library.mapMethods, function (v, k) {
 
-                config.library[k] = {}
-                config.library[k].assemblyFile = __config.library.assemblyFile
-                config.library[k].typeName = __config.library.typeName
-                config.library[k].references = __config.library.references
-                config.library[k].methodName = v
+            config.library[k] = {}
+            config.library[k].assemblyFile = __config.library.assemblyFile
+            config.library[k].typeName = __config.library.typeName
+            config.library[k].references = __config.library.references
+            config.library[k].methodName = v
 
-            })
+        })
 
-            return config
+        return config
 
-        }
+    }
 
-        _this.getStatus = function(callback){
+    _this.getStatus = function(callback){
 
-            console.log("scr.js :: getStatus")
+        console.log("scr.js :: getStatus")
 
-            var action,
-                config = _config
+        var action,
+            config = _config
 
-                try{
+            try{
 
-                    action = _edge.func(config.library['getStatus'])
+                action = _edge.func(config.library['getStatus'])
 
-                    return action({
+                return action({
 
-                        port: config.port
+                    port: config.port
 
-                    }, {
+                }, {
 
-                        ErrorDesc: '',
-                        Flag: false
+                    ErrorDesc: '',
+                    Flag: false
 
-                    }, true)
+                }, true)
 
-                }catch(err){
+            }catch(err){
 
-                    console.error(err)
+                console.error(err)
 
-                    return null
+                return null
 
-                }
+            }
 
-        }
+    }
 
-        _this.getSn = function () {
+    _this.getSn = function () {
 
-            console.log("scr.js :: getSn")
+        console.log("scr.js :: getSn")
 
-            var action,
-                config = _config
+        var action,
+            config = _config
 
-                try{
+            try{
 
-                    action = _edge.func(config.library['getSn'])
+                action = _edge.func(config.library['getSn'])
 
-                    return action({
+                return action({
 
-                        ErrorDesc: '',
-                        SerialNumber: ''
+                    ErrorDesc: '',
+                    SerialNumber: ''
 
-                    }, true)
+                }, true)
 
-                }catch(err){
+            }catch(err){
 
-                    console.error(err)
+                console.error(err)
 
-                    return null
+                return null
 
-                }
+            }
 
-        }
+    }
 
-        __constructor(config)
+    __constructor(config)
 
 }
 
